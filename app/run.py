@@ -3,7 +3,6 @@ import math
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def index():
     """
@@ -11,7 +10,6 @@ def index():
     :return: Index page
     """
     return render_template("index.html")
-
 
 @app.route('/dimensions', methods=['GET'])
 def dimensions():
@@ -22,13 +20,13 @@ def dimensions():
     rooms = sanitize_input(request.args.get("rooms"))
     return render_template("dimensions.html", rooms=rooms)
 
-
 @app.route('/results', methods=['POST'])
 def results():
     """
     Performs most of the logic for paint calculations
     :return: Results page
     """
+
     data = request.values
     number_of_data_sets = len(data) / 3
     all_data = []
@@ -38,12 +36,11 @@ def results():
         formatted_data = extract_room_info(data, room_number)
         formatted_data['ft'] = calculate_feet(formatted_data)
         formatted_data['gallons'] = calculate_gallons_required(formatted_data)
-        formatted_data['room'] = room_number + 1
+        formatted_data['room'] = (room_number + 1)
         total_gallons_required += calculate_gallons_required(formatted_data)
         all_data.append(formatted_data)
 
     return render_template("results.html", all_data=all_data, total_gallons_required=total_gallons_required)
-
 
 def calculate_feet(formatted_data):
     """
@@ -51,8 +48,8 @@ def calculate_feet(formatted_data):
     :param formatted_data: dict of L/W/H information
     :return: integer for the number of feet required by performing `((Length * 2) + (Width * 2)) * Height`
     """
-    return int(formatted_data['length']) * int(formatted_data['width']) * int(formatted_data['height'])
-
+    "return int(formatted_data['length']) * int(formatted_data['width']) * int(formatted_data['height']) Changed the calculation with correct calculation."
+    return float(((formatted_data['length'] * 2) + float(formatted_data['width'] * 2)) * float(formatted_data['height']))
 
 def calculate_gallons_required(formatted_data):
     """
@@ -60,8 +57,8 @@ def calculate_gallons_required(formatted_data):
     :param formatted_data: An integer for the number of feet required to paint
     :return: feet / paint coverage, rounded up
     """
-    return math.floor(formatted_data['ft'] / 350)
-
+    "return math.floor(formatted_data['ft'] / 350) Changed the logic for feet instead of 350 put 400."
+    return math.ceil(formatted_data['ft'] / 400)
 
 def sanitize_input(input):
     """
@@ -71,7 +68,6 @@ def sanitize_input(input):
     """
     return abs(int(input))
 
-
 def extract_room_info(data, room_number):
     """
     Sanitizes inputs, and then constructs a dict of the room information
@@ -79,12 +75,11 @@ def extract_room_info(data, room_number):
     :param room_number: The number of the room that is being processed
     :return: A formatted dict with room information
     """
-    formatted_data = {'length': sanitize_input(data.get("length-%d" % room_number)),
-                      'width': sanitize_input(data.get("width-%d" % room_number)),
-                      'height': sanitize_input(data.get("height-%d" % room_number))
+    formatted_data = {'length': float(data.get("length-%d" % room_number)),
+                      'width': float(data.get("width-%d" % room_number)),
+                      'height': float(data.get("height-%d" % room_number))
                       }
     return formatted_data
-
 
 # Boiler plate for starting the application
 if __name__ == '__main__':
