@@ -58,3 +58,8 @@ To make it easier on everybody, it's best if we use a PR to diff what work was c
 * Run the TestCases.java as "Run as -> TestNG Test"
 * You can also follow instruction and clone the repo from https://github.com/pari91293/paint-Test
 * If you have any furthure questions or have issues running the app please contact me at dalalparisha@gmail.com
+
+## Reports
+
+* Please go through fieldvalidation observation.txt & Test_Cases.txt files for the observation and test cases.
+* Paint_Calculator_Test_Report.pdf contains detailed report about the tests.
