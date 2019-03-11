@@ -10,10 +10,10 @@
     </tr>
     {% for row in all_data %}
     <tr>
-        <td>
+        <td id ="room{{ row['room'] }}">
             {{ row['room'] }}
         </td>
-        <td>
+        <td id="ftresult{{ row['room'] }}">
             {{ row['ft'] }}
         </td>
         <td>
@@ -23,11 +23,12 @@
     {% endfor %}
 </table>
 
-<h5>Total Gallons Required: {{ total_gallons_required }}</h5>
+<h5 id="totalgallon">Total Gallons Required: {{ total_gallons_required }}</h5>
+
 
 <div style="text-align: center">
     <form action="/">
-        <input type="submit" value="Home"/>
+        <input type="submit" id="submit" value="Home"/>
     </form>
 </div>
 {% endblock %}
