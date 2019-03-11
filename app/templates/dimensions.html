@@ -16,19 +16,18 @@
                 {{ room + 1 }}
             </td>
             <td>
-                <input type="number" name="length-{{ room }}" min="1" required/>
+                <input type="number" name="length-{{ room }}" min="1" step="any" id="length-{{ room }}" required/>
             </td>
             <td>
-                <input type="number" name="width-{{ room }}" min="1" required/>
+                <input type="number" name="width-{{ room }}" min="1" step="any" id="width-{{ room }}" required/>
             </td>
             <td>
-                <input type="number" name="height-{{ room }}" id="height" min="1" required/>
+                <input type="number" name="height-{{ room }}" step ="any" id="height-{{ room }}" min="1" required/>
             </td>
         </tr>
         {% endfor %}
     </table>
-    <input type="submit">
+    <input type="submit" id="submit">
 </form>
 
 {% endblock %}
-
