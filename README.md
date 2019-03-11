@@ -55,3 +55,5 @@ To make it easier on everybody, it's best if we use a PR to diff what work was c
 * Update the Chrome driver path in /paint-Calculator-Test/SeleniumTutorial/src/paintTest/TestCases.java, download latest Chrome driver at http://chromedriver.chromium.org/
 * Update the path in testng.xml
 * Run the TestCases.java as "Run as -> TestNG Test"
+* You can also follow instruction and clone the repo from https://github.com/pari91293/paint-Test
+* If you have any furthure questions or have issues running the app please contact me at dalalparisha@gmail.com
